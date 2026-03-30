@@ -1,0 +1,14 @@
+# Ignore everything by default
+*
+
+# Track config files
+!.gitignore
+!CLAUDE.md
+!settings.json
+!commands/
+!commands/**
+!rules/
+!rules/**
+!plugins/
+plugins/*
+!plugins/installed_plugins.json
