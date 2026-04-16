@@ -3,6 +3,9 @@
     "playwright@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true
   },
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "skipDangerousModePermissionPrompt": true,
   "teammateMode": "tmux",
   "model": "opus",
@@ -28,6 +31,7 @@
       "Bash(hostname *)",
       "Bash(uname *)",
       "Bash(env *)",
+      "Bash(mkdir *)",
       "Bash(printenv *)",
       "Bash(ps *)",
       "Bash(sort *)",
@@ -43,20 +47,32 @@
       "Bash(git remote *)",
       "Bash(git ls-files *)",
       "Bash(git ls-tree *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git init *)",
+      "Bash(uv init *)",
+      "Bash(uv sync *)",
+      "Bash(uv add *)",
       "WebSearch",
+      "WebFetch(domain:registry.terraform.io)",
       "WebFetch(domain:docs.isambard.ac.uk)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:pypi.org)",
       "Bash(curl *)",
       "Bash(gh auth status *)",
       "Bash(gh repo view *)",
+      "Bash(gh repo list *)",
       "Bash(gh api *)",
       "Bash(module avail *)",
       "Bash(brew search *)",
       "Bash(brew info *)",
       "Bash(gh run view *)",
       "Bash(gh run list *)",
-      "Bash(gh run watch *)"
+      "Bash(gh run watch *)",
+      "Read(~/.claude/**)",
+      "Bash(terraform fmt *)",
+      "Bash(terraform apply *)",
+      "Bash(tmux display-name *)"
     ],
     "deny": [
       "Bash(rm -rf *)",
@@ -88,7 +104,9 @@
       "Bash(kill -9 *)",
       "Bash(pkill *)",
       "Bash(docker rm -f *)",
-      "Bash(docker system prune *)"
+      "Bash(docker system prune *)",
+      "Bash(terraform apply -auto-approve *)",
+      "Bash(terraform destroy *)"
     ]
   }
 }
