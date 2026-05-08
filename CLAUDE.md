@@ -21,3 +21,4 @@ from app.evals.schemas import JudgeScore, to_float_01
 """
 - Prefer pathlib.Path over string paths.
 - When developing with uv, avoid using `uv run python *` or `uv pip *`. Prefer uv best practice like `uv run *` and `uv add/remove *`.
+- Avoid global constants, e.g. `DEFAULT_URL=...`, at the top of scripts. Prefer a single config file that uses pydantic's `BaseModel`. This centralises configuration and type checks constants for free.

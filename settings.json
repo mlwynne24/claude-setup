@@ -1,14 +1,7 @@
 {
-  "enabledPlugins": {
-    "playwright@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true
-  },
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-  "skipDangerousModePermissionPrompt": true,
-  "teammateMode": "tmux",
-  "model": "opus",
   "permissions": {
     "allow": [
       "mcp__github__get_*",
@@ -108,5 +101,13 @@
       "Bash(terraform apply -auto-approve *)",
       "Bash(terraform destroy *)"
     ]
-  }
+  },
+  "enabledPlugins": {
+    "playwright@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "teammateMode": "tmux",
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
 }
