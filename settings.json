@@ -56,6 +56,9 @@
       "Bash(gh repo view *)",
       "Bash(gh repo list *)",
       "Bash(gh api *)",
+      "Bash(gh project *)",
+      "Bash(gh label *)",
+      "Bash(gh issue *)",
       "Bash(module avail *)",
       "Bash(brew search *)",
       "Bash(brew info *)",
@@ -99,7 +102,8 @@
       "Bash(docker rm -f *)",
       "Bash(docker system prune *)",
       "Bash(terraform apply -auto-approve *)",
-      "Bash(terraform destroy *)"
+      "Bash(terraform destroy *)",
+      "Bash(gh * delete *)"
     ]
   },
   "enabledPlugins": {
