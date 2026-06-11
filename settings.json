@@ -59,6 +59,7 @@
       "Bash(gh project *)",
       "Bash(gh label *)",
       "Bash(gh issue *)",
+      "Bash(gh pr *)",
       "Bash(module avail *)",
       "Bash(brew search *)",
       "Bash(brew info *)",
@@ -68,9 +69,16 @@
       "Read(~/.claude/**)",
       "Bash(terraform fmt *)",
       "Bash(terraform apply *)",
-      "Bash(tmux display-name *)"
+      "Bash(tmux *)"
     ],
     "deny": [
+      "Bash(terraform apply -auto-approve *)",
+      "Bash(terraform destroy *)",
+      "Bash(gh * delete *)"
+    ],
+    "ask": [
+      "Bash(gh pr merge *)",
+      "Bash(gh pr close *)",
       "Bash(rm -rf *)",
       "Bash(rm -r *)",
       "Bash(rm *)",
@@ -100,10 +108,7 @@
       "Bash(kill -9 *)",
       "Bash(pkill *)",
       "Bash(docker rm -f *)",
-      "Bash(docker system prune *)",
-      "Bash(terraform apply -auto-approve *)",
-      "Bash(terraform destroy *)",
-      "Bash(gh * delete *)"
+      "Bash(docker system prune *)"
     ]
   },
   "enabledPlugins": {
@@ -111,8 +116,10 @@
     "skill-creator@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true
   },
+  "effortLevel": "high",
   "skipDangerousModePermissionPrompt": true,
   "teammateMode": "tmux",
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "skipWorkflowUsageWarning": true
 }

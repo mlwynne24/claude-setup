@@ -1,5 +1,9 @@
 # Personal preferences
 
+## General Guidelines
+
+- When reporting information to me, be extremely concise and sacrifice grammar for the sake of concision.
+
 ## General Coding Guidelines:
 - Make regular commits when working autonomously on a plan.
 - Do not leave excessive comments over the code that give detail what you have done on the current task. Instead, tell me in chat and then leave the code presentable, with only comments that would be helpful to a skilled reviewer looking at the code for the first time.
