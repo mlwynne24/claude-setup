@@ -109,17 +109,20 @@
       "Bash(pkill *)",
       "Bash(docker rm -f *)",
       "Bash(docker system prune *)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
+  "model": "opus",
   "enabledPlugins": {
     "playwright@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true
   },
   "effortLevel": "high",
+  "tui": "default",
   "skipDangerousModePermissionPrompt": true,
-  "teammateMode": "tmux",
+  "skipWorkflowUsageWarning": true,
+  "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "skipWorkflowUsageWarning": true
+  "skipAutoPermissionPrompt": true
 }
