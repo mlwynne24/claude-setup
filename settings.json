@@ -23,7 +23,6 @@
       "Bash(whoami *)",
       "Bash(hostname *)",
       "Bash(uname *)",
-      "Bash(env *)",
       "Bash(mkdir *)",
       "Bash(printenv *)",
       "Bash(ps *)",
@@ -108,11 +107,13 @@
       "Bash(kill -9 *)",
       "Bash(pkill *)",
       "Bash(docker rm -f *)",
-      "Bash(docker system prune *)"
+      "Bash(docker system prune *)",
+      "Bash(az storage blob list *)",
+      "Bash(az storage container list *)"
     ],
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
+  "model": "opus",
   "hooks": {
     "SessionStart": [
       {
@@ -138,5 +139,44 @@
   "skipWorkflowUsageWarning": true,
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Bash(terraform apply:*) in infra-entra/ or infra-sc/ — protected IaC scopes require review before apply",
+      "Bash(az deployment:*) targeting production Azure OpenAI or production Container Apps in Sweden Central"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: Frontier-Economics (GitHub org; repo origin is github.com:Frontier-Economics/frontier-ai-platform.git)",
+      "**Cloud provider(s)**: Azure — Sweden Central (infra-sc/), plus Entra ID objects (infra-entra/); Azure OpenAI used via keyless/AD token auth",
+      "**Repository visibility**: Not queryable here (gh lookup unavailable) — assume private per shipped default; org name does not indicate public status",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: Azure Key Vault (infra-sc/key_vault.tf); CI secrets referenced by name only (AZURE_CLIENT_ID, AZURE_PLAN_CLIENT_ID, AZURE_SUBSCRIPTION_ID, AZURE_TENANT_ID, GITHUB_TOKEN); local dev secrets via gitignored secrets/ dir and .env (never commit AZURE_OPENAI_AD_TOKEN or GitHub App PEM per .env.example)",
+      "**Default / protected branches**: main (default branch, from repo facts); protection/ruleset status not queryable here — treat main as protected by convention",
+      "**CI/CD deploy targets**: Azure Container Apps (Sweden Central) via infra-sc/ Terraform, applied by a deploy pipeline; infra-entra/ Terraform applied by a human (ADR 0027)",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine or CI runner with open internet",
+      "**Source control**: The trusted repo (github.com:Frontier-Economics/frontier-ai-platform.git) and its remote only — no additional orgs configured",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: Azure OpenAI production endpoint at openai-prod-aiplatform-sc.openai.azure.com (from .env.example); MCP Gateway endpoint at /mcp (no trailing slash)",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: .env, .env.*, secrets/ (gitignored), infra-entra/*.tf and infra-sc/*.tf (Terraform state and identity/config), docs/adr/0026-secrets-never-persist-in-terraform-state.md — share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or segment — including openai-prod-aiplatform-sc.openai.azure.com and the production Gateway referenced in README/CLAUDE.md",
+      "**Protected deployment namespaces / environments**: production Gateway / Azure Container Apps production environment (Sweden Central) as distinguished from Staging Gateway and local/preview Workflows (ADR 0036/0037)",
+      "**Protected IaC scopes**: infra-entra/ (Entra ID objects, human-applied per ADR 0027) and infra-sc/ (Azure stack Terraform: identity.tf, key_vault.tf, network.tf, pim.tf, private_endpoints.tf) — IAM, RBAC, networking, quota, and node-pool resources; anything tagged prod/production",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development on the Frontier AI Platform (governed MCP layer / Workflow SDK) — routine under this repo's paths",
+      "**Trusted repo**: github.com:Frontier-Economics/frontier-ai-platform.git (this checkout, working directory frontier-ai-platform/slides-replica-safeguards worktree)",
+      "**Org-specific CLIs**: uv (per .claude/CLAUDE.md — always use uv over pip; avoid `uv run python *` / `uv pip *`, prefer `uv run *` / `uv add/remove *`), gh, az, terraform",
+      "**Routine under repo prefix**: uv sync/run/add/remove, ruff check/format, mypy, pytest, npm --prefix workflows/slides/node, scripts/generate_registry.py are routine within this repo"
+    ]
+  },
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  }
 }
